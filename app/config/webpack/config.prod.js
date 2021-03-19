@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(baseConfig, {
   output: {
-    filename: '[name].min.js',
+    filename: '[name].[fullhash].min.js',
   },
   mode: 'production',
   module: {
@@ -14,9 +14,6 @@ module.exports = merge(baseConfig, {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: false,
-            },
           },
           'css-loader',
           'sass-loader'
@@ -27,7 +24,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].min.css'
+      filename: '[name].[fullhash].min.css'
     })
   ]
 });
