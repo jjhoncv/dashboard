@@ -15,7 +15,7 @@ const Routes: React.FC<any> = ({ logged: _logged }) => {
   }, [_logged]);
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename={`/${process.env.DIRECTORY}`}>
       <Switch>
         {/* products router */}
 
