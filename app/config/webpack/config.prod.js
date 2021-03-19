@@ -14,7 +14,7 @@ module.exports = merge(baseConfig, {
         use: [{
           loader: 'url-loader',
           options: {
-            name: '[name].[fullhash].[ext]',
+            name: '[name].[hash].[ext]',
             limit: 70000, //70kb
             publicPath: baseConfig.output.publicPath
           },
