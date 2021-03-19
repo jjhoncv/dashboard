@@ -1,10 +1,16 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  dotenvOverride,
+  createVarsDefinePlugin
+} = require('./utils');
+
 const rootPath = path.join(__dirname, '../../')
 
-// const publicPath = process.env.PATH_STATIC + '/';
-const publicPath = '/';
+dotenvOverride();
 
+const publicPath = process.env.PATH_STATIC + '/';
 
 module.exports = {
   devtool: 'source-map',
@@ -16,7 +22,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: '[name].[fullhash].[ext]',
+            name: '[name].[ext]',
             limit: 70000, //70kb
             publicPath
           },
@@ -50,6 +56,7 @@ module.exports = {
     publicPath
   },
   plugins: [
+    new webpack.DefinePlugin(createVarsDefinePlugin()),
     new HtmlWebpackPlugin({
       template: path.join(rootPath, 'public/index.html')
     }),

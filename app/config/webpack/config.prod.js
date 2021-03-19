@@ -10,6 +10,17 @@ module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|gif|png|woff2|woff|ttf|eot)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: '[name].[fullhash].[ext]',
+            limit: 70000, //70kb
+            publicPath: baseConfig.output.publicPath
+          },
+        }]
+      },
+      {
         test: /\.(sc|c)ss$/,
         use: [
           {
