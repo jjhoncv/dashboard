@@ -1,80 +1,49 @@
 import * as React from "react";
 
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { PrivateRoute, PrivateAuthRoute } from ".";
-import { session } from "../utils";
-import { Register } from "../views/auth";
-import { Login } from "../views/auth/Login";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
+
+import { Register } from "../views/register";
+import { Login } from "../views/login";
 import { Dashboard } from "../views/dashboard";
 import { ProductAdd, ProductEdit, ProductList } from "../views/products";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
 
-const Routes: React.FC<any> = ({ logged: _logged }) => {
-  const [logged, setLogged] = React.useState(_logged);
-  React.useEffect(() => {
-    setLogged(_logged);
-  }, [_logged]);
-
+export const Routes: React.FC<any> = () => {
   return (
-    <BrowserRouter basename={`/${process.env.DIRECTORY}`}>
+    <Router>
+      <Header />
       <Switch>
         {/* products router */}
 
-        <PrivateRoute
-          authed={logged}
-          path="/products"
-          exact
-          component={ProductList}
-        />
-        <PrivateRoute
-          authed={logged}
-          path="/products/add"
-          exact
-          component={ProductAdd}
-        />
-        <PrivateRoute
-          authed={logged}
-          path="/products/edit/:id"
-          exact
-          component={ProductEdit}
-        />
+        <PrivateRoute path="/products" exact component={ProductList} />
+        <PrivateRoute path="/products/add" exact component={ProductAdd} />
+        <PrivateRoute path="/products/edit/:id" exact component={ProductEdit} />
 
         {/* dashboard router */}
 
-        <PrivateRoute authed={logged} path="/" exact component={Dashboard} />
+        <PrivateRoute path="/" exact component={Dashboard} />
 
         {/* public router */}
 
-        <PrivateAuthRoute authed={logged} path="/login" component={Login} />
+        <PublicRoute path="/login" component={Login} />
 
-        <PrivateAuthRoute
-          authed={logged}
-          path="/register"
-          component={Register}
-        />
+        <PublicRoute path="/register" component={Register} />
         <Route
           render={(props) => (
             <Redirect to={{ pathname: "/", state: { from: props.location } }} />
           )}
         />
       </Switch>
-    </BrowserRouter>
+      <Footer />
+    </Router>
   );
-};
-
-export const Router = () => {
-  const [logged, setLogged] = React.useState(
-    session?.getUser()?.id ? !!session?.getUser() : false
-  );
-
-  const handleRefreshSession = () => {
-    setLogged(true);
-  };
-
-  React.useEffect(() => {
-    document.addEventListener("refreshSession", handleRefreshSession);
-    return () => {
-      document.removeEventListener("refreshSession", handleRefreshSession);
-    };
-  }, []);
-  return <Routes logged={logged} />;
 };

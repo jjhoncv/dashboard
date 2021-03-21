@@ -1,36 +1,44 @@
 import * as React from "react";
 import "./style.scss";
 // @ts-ignore
-import logo from "./../../assets/imgs/logo.png";
-import { session } from "../../utils";
+import Logo from "./../../assets/imgs/logo.png";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../auth/useAuth";
+
 export const Header = () => {
-  const [user, setUser] = React.useState(session.getUser());
+  const { user, logout } = useAuth();
+
   const handleLogout = (e) => {
     e.preventDefault();
-    window.sessionStorage.removeItem("user");
-    window.location.href = "/login";
+    logout();
   };
   return (
     <header>
       <div className="content">
         <div className="header-left">
-          <img src={logo} height="40px" />
+          <img src={Logo} height="40px" />
           <h1>Dashboard</h1>
         </div>
         {user?.id && (
           <div className="header-center">
             <ul className="header-module">
               <li>
-                <a href="/">Home</a>
+                <NavLink exact to="/">
+                  Home
+                </NavLink>
               </li>
               <li>
                 <span>Products</span>
                 <ul>
                   <li>
-                    <a title="add product" href="/products/add">add product</a>
+                    <NavLink exact to="/products/add">
+                      add product
+                    </NavLink>
                   </li>
                   <li>
-                    <a title="products" href="/products">products</a>
+                    <NavLink exact to="/products">
+                      products
+                    </NavLink>
                   </li>
                 </ul>
               </li>
@@ -42,7 +50,7 @@ export const Header = () => {
             {user?.id ? (
               <>
                 <li>
-                  <a>Hi! {user.name}</a>
+                  <a>Hi! {user.username}</a>
                 </li>
                 <li>
                   <a href="#" onClick={(e) => handleLogout(e)}>
@@ -53,14 +61,14 @@ export const Header = () => {
             ) : (
               <>
                 <li>
-                  <a title="Ir a login" href="/login">
+                  <NavLink exact to="/login">
                     Login
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a title="Ir a registro" href="/register">
+                  <NavLink exact to="/register">
                     Register
-                  </a>
+                  </NavLink>
                 </li>
               </>
             )}

@@ -1,6 +1,12 @@
 import * as React from "react";
-import { Router } from "./routes";
+import { Routes } from "./routes/Router";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export const App = () => {
-  return <Router />;
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  );
 };

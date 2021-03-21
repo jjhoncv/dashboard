@@ -10,17 +10,6 @@ module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.(jpe?g|gif|png|woff2|woff|ttf|eot)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            name: '[name].[hash].[ext]',
-            limit: 70000, //70kb
-            publicPath: baseConfig.output.publicPath
-          },
-        }]
-      },
-      {
         test: /\.(sc|c)ss$/,
         use: [
           {
@@ -29,7 +18,19 @@ module.exports = merge(baseConfig, {
           'css-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              // outputPath: 'images/',
+              // publicPath: 'images/',
+            },
+          },
+        ],
+      },
     ],
 
   },

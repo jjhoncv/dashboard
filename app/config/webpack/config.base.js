@@ -17,17 +17,7 @@ module.exports = {
   entry: path.join(rootPath, 'src/index.tsx'),
   module: {
     rules: [
-      {
-        test: /\.(jpe?g|gif|png|woff2|woff|ttf|eot)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            name: '[name].[ext]',
-            limit: 70000, //70kb
-            publicPath
-          },
-        }]
-      },
+      
       {
         test: /\.tsx?$/,
         use: 'ts-loader'
@@ -48,7 +38,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['*', '.ts', '.tsx', '.js']
   },
   output: {
     path: path.join(rootPath, 'dist'),
@@ -58,7 +48,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin(createVarsDefinePlugin()),
     new HtmlWebpackPlugin({
-      template: path.join(rootPath, 'public/index.html')
+      template: path.join(rootPath, 'public/index.html'),
     }),
   ]
 };
