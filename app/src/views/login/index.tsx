@@ -1,19 +1,18 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../auth/useAuth";
+import * as authActions from "../../features/auth/actions";
 import "./style.scss";
 
 export const Login: React.FC<any> = () => {
-  const { login, isFetching } = useAuth();
-
-  const fetchLogin = async (id, username) => {
-    login(id, username);
-  };
+  const isFetching = useSelector((state: any) => state.auth.isFetching);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = (document.getElementById("username") as any).value;
-    fetchLogin(1, username);
+    const password = (document.getElementById("password") as any).value;
+    dispatch(authActions.login(username, password));
   };
 
   return (

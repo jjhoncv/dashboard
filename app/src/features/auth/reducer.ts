@@ -1,19 +1,20 @@
-import * as actionTypes from "./authActionTypes";
+import * as actionTypes from "./actionTypes";
 
 const initialState = {
   user: null,
+  token: null,
   error: {},
   isFetching: false,
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_AUTH_REQUEST:
+    case actionTypes.LOGIN_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case actionTypes.FETCH_AUTH_FAILURE:
+    case actionTypes.LOGIN_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -22,13 +23,14 @@ export const authReducer = (state = initialState, action) => {
           message: action.error,
         },
       };
-    case actionTypes.FETCH_AUTH_SUCCESS:
+    case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: false,
+        token: action.token,
         user: action.user,
       };
-    case actionTypes.FETCH_AUTH_LOGOUT:
+    case actionTypes.LOGOUT:
       return {
         initialState,
       };

@@ -3,14 +3,16 @@ import "./style.scss";
 // @ts-ignore
 import Logo from "./../../assets/imgs/logo.png";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../auth/useAuth";
+import * as authActions from "../../features/auth/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Header = () => {
-  const { user, logout } = useAuth();
+  const user = useSelector((state: any) => state.auth.user);
+  const dispatch = useDispatch();
 
   const handleLogout = (e) => {
     e.preventDefault();
-    logout();
+    dispatch(authActions.logout());
   };
   return (
     <header>
