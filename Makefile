@@ -1,5 +1,14 @@
 NETWORK_NAME		= dash-network
 
+install:
+	docker run \
+		-it \
+		--rm \
+		-v $(PWD)/app:/app \
+		-w /app \
+		node:11-slim \
+		npm install
+
 start:
 	docker run \
 		-it \
