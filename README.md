@@ -1,5 +1,5 @@
 # dashboard
-reactjs
+React JS
 
 Demo del proyecto [https://jjhoncv.github.io/dashboard](https://jjhoncv.github.io/dashboard/) 
 
