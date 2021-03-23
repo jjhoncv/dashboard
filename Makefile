@@ -40,7 +40,7 @@ stop:
 	@docker rm -f dash-client
 
 deploy:
-	aws s3 sync s3://config.wdashboard.tk/dashboard.spa ${PWD}/app .
+	aws s3 sync s3://config.wdashboard.tk/dashboard.spa ${PWD}/app
 	@make build
 	aws s3 sync \
 		${PWD}/app/dist \
@@ -52,5 +52,3 @@ deploy:
 
 env:
 	aws s3 cp app/.env s3://config.wdashboard.tk/dashboard.spa/
-
-
