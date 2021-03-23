@@ -6,10 +6,9 @@ const {
   createVarsDefinePlugin
 } = require('./utils');
 
-const rootPath = path.join(__dirname, '../../')
-
 dotenvOverride();
 
+const rootPath = path.join(__dirname, '../../')
 const publicPath = process.env.PATH_STATIC + '/';
 
 module.exports = {
@@ -17,7 +16,7 @@ module.exports = {
   entry: path.join(rootPath, 'src/index.tsx'),
   module: {
     rules: [
-      
+
       {
         test: /\.tsx?$/,
         use: 'ts-loader'

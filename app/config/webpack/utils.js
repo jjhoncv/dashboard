@@ -5,6 +5,7 @@ const rootPath = path.join(__dirname, '../../');
 
 const fs = require('fs');
 const dotenvLocal = path.join(rootPath, '/.env.local');
+const dotenvEnv = path.join(rootPath, '/.env');
 
 exports.createVarsDefinePlugin = () => {
   const newVars = {};
@@ -12,7 +13,7 @@ exports.createVarsDefinePlugin = () => {
   try {
     envConfig = {
       ...envConfig,
-      ...dotenv.parse(fs.readFileSync(dotenvLocal))
+      ...dotenv.parse(fs.readFileSync(dotenvEnv))
     };
   } catch (e) { }
 
