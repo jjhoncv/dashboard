@@ -1,14 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {
-  dotenvOverride,
-  createVarsDefinePlugin
-} = require('./utils');
-
-dotenvOverride();
+const { createVarsDefinePlugin, varsUsingWebpack } = require('./utils');
 
 const rootPath = path.join(__dirname, '../../')
+
+varsUsingWebpack();
+
 const publicPath = process.env.PATH_STATIC + '/';
 
 module.exports = {
