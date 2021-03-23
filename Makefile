@@ -49,6 +49,5 @@ deploy:
 		--acl public-read \
 		--cache-control public,max-age=31536000,s-maxage=31536000 \
 		--region sa-east-1
-
 env:
 	aws s3 cp app/.env s3://config.wdashboard.tk/dashboard.spa/

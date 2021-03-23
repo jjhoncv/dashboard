@@ -1,7 +1,7 @@
 # dashboard
 React JS
 
-Demo del proyecto [https://jjhoncv.github.io/dashboard](https://jjhoncv.github.io/dashboard/) 
+Demo del proyecto [http://wdashboard.tk](http://wdashboard.tk) 
 
 ## Features
 
