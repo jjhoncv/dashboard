@@ -5,6 +5,7 @@ import Logo from "./../../assets/imgs/logo.png";
 import { NavLink } from "react-router-dom";
 import * as authActions from "../../features/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Container } from "../Container";
 
 export const Header = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -16,7 +17,7 @@ export const Header = () => {
   };
   return (
     <header>
-      <div className="content">
+      <Container scope="header">
         <div className="header-left">
           <img src={Logo} height="40px" />
           <h1>Dashboard</h1>
@@ -76,7 +77,7 @@ export const Header = () => {
             )}
           </ul>
         </nav>
-      </div>
+      </Container>
     </header>
   );
 };

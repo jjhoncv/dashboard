@@ -5,14 +5,14 @@ export const login = (username, password) => {
   return async (dispatch) => {
     dispatch({ type: authActionTypes.LOGIN_REQUEST });
     try {
-      const { data } = await authService.login(username, password);
+      const { user, token } = await authService.login(username, password);
       dispatch({
         type: authActionTypes.LOGIN_SUCCESS,
-        token: data.token,
-        user: data.user,
+        token: token,
+        user: user,
       });
     } catch (e) {
-      dispatch({ type: authActionTypes.LOGIN_FAILURE, error: e });
+      dispatch({ type: authActionTypes.LOGIN_FAILURE, error: e.message });
     }
   };
 };

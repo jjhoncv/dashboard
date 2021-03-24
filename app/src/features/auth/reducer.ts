@@ -3,7 +3,7 @@ import * as actionTypes from "./actionTypes";
 const initialState = {
   user: null,
   token: null,
-  error: {},
+  error: null,
   isFetching: false,
 };
 
@@ -12,6 +12,7 @@ export const authReducer = (state = initialState, action) => {
     case actionTypes.LOGIN_REQUEST:
       return {
         ...state,
+        error: null,
         isFetching: true,
       };
     case actionTypes.LOGIN_FAILURE:
@@ -19,7 +20,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         error: {
-          isError: false,
+          isError: true,
           message: action.error,
         },
       };

@@ -5,12 +5,8 @@ footer {
   border-top: 1px solid #ddd;
   position: fixed;
   bottom: 0;
-  .content {
-    display: flex;
-    height: 40px;
-    align-items: center;
-  }
   .footer-left {
+    height: 40px;
     display: flex;
     align-items: center;
   }

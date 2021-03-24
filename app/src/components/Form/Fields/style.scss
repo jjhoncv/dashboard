@@ -1,0 +1,31 @@
+.form {
+  font-size: 16px;
+}
+.form-item {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+.form-label {
+  min-width: 100px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.form-foot {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  p {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 15px;
+    a {
+      color: #fc971c;
+      text-decoration: underline;
+      display: inline;
+    }
+  }
+}
