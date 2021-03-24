@@ -31,7 +31,7 @@ export const Login: React.FC<any> = () => {
     <Container>
       <>
         {!!error && <FloatMessage show={!!error}>{error?.message}</FloatMessage>}
-        {true && <FloatLoading>...</FloatLoading>}
+        {isFetching && <FloatLoading>...</FloatLoading>}
 
         <Page>
           <PageHead>
