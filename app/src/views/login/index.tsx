@@ -30,8 +30,8 @@ export const Login: React.FC<any> = () => {
   return (
     <Container>
       <>
-        {!!error && <FloatMessage show={!!error}>{error?.message}</FloatMessage>}
-        {isFetching && <FloatLoading>Cargando ...</FloatLoading>}
+        {/* {!!error && <FloatMessage show={!!error}>{error?.message}</FloatMessage>} */}
+        {true && <FloatLoading>...</FloatLoading>}
 
         <Page>
           <PageHead>
