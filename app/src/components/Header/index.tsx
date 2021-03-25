@@ -3,7 +3,7 @@ import "./style.scss";
 // @ts-ignore
 import Logo from "./../../assets/imgs/logo.png";
 import { NavLink } from "react-router-dom";
-import * as authActions from "../../features/auth/actions";
+import * as authActions from "../../stores/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "../Container";
 

@@ -2,10 +2,10 @@ import * as React from "react";
 import { Float } from "../Float";
 import "./style.scss";
 
-export const FloatLoading = ({ children }) => {
+export const FloatLoading = () => {
   return (
     <Float>
-      <div className="float-loading">{children}</div>
+      <div className="float-loading">...</div>
     </Float>
   );
 };

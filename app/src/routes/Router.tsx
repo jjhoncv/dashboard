@@ -24,26 +24,18 @@ export const Routes: React.FC<any> = () => {
       <Switch>       
 
         {/* public router */}
-
         <PublicRoute exact path="/login" component={Login} />
-
         <PublicRoute exact path="/register" component={Register} />
 
         {/* dashboard router */}
-
         <PrivateRoute exact path="/" component={Dashboard} />
 
         {/* products router */}
-
         <PrivateRoute exact path="/products" component={ProductList} />
         <PrivateRoute exact path="/products/add" component={ProductAdd} />
         <PrivateRoute exact path="/products/edit/:id" component={ProductEdit} />
 
-        {/* <Route
-          render={(props) => (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-          )}
-        /> */}
+        <PublicRoute path="/" component={Login} />
       </Switch>
       <Footer />
     </Router>

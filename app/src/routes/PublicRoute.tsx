@@ -10,7 +10,8 @@ export const PublicRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         isLogged === true ? (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          // <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          <Redirect to="/" />
         ) : (
           <Component {...props} />
         )

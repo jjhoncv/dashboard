@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 export const Dashboard = () => {
@@ -11,7 +12,7 @@ export const Dashboard = () => {
       <br />
       <br />
       <div className="dashboard-modules">
-        Modules: <a href="/products">Products</a>
+        Modules: <NavLink to="/products">Products</NavLink>
       </div>
     </div>
   );

@@ -11,13 +11,15 @@ import {
   Input,
 } from "../../components/Form";
 import { Page, PageBody, PageHead } from "../../components/Page";
-import * as authActions from "../../features/auth/actions";
+import * as authActions from "../../stores/auth/actions";
+import * as messageActions from "../../stores/message/actions";
+
 import "./style.scss";
 import { FloatLoading, FloatMessage } from "../../components/Float";
 
 export const Login: React.FC<any> = () => {
   const isFetching = useSelector((state: any) => state.auth.isFetching);
-  const error = useSelector((state: any) => state.auth.error);
+  const error = useSelector((state: any) => state.messageAlert.text);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -27,11 +29,19 @@ export const Login: React.FC<any> = () => {
     dispatch(authActions.login(username, password));
   };
 
+  const handleCloseMessage = () => {
+    dispatch(messageActions.hideAlert());
+  };
+
   return (
     <Container>
       <>
-        {!!error && <FloatMessage show={!!error}>{error?.message}</FloatMessage>}
-        {isFetching && <FloatLoading>...</FloatLoading>}
+        {!!error && (
+          <FloatMessage handleClick={handleCloseMessage} show={!!error}>
+            {error}
+          </FloatMessage>
+        )}
+        {isFetching && <FloatLoading />}
 
         <Page>
           <PageHead>
@@ -68,39 +78,5 @@ export const Login: React.FC<any> = () => {
         </Page>
       </>
     </Container>
-    // <div className="content">
-    //   {isFetching ? (
-    //     <>Cargando...</>
-    //   ) : (
-    //     <>
-    //       <div className="login-head">
-    //         <h2>Login</h2>
-    //       </div>
-    //       <div className="login">
-    //         <div className="login-main">
-    //           <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
-    //             <div className="form-item">
-    //               <label htmlFor="">Username</label>
-    //               <input type="text" name="username" id="username" />
-    //             </div>
-    //             <div className="form-item">
-    //               <label htmlFor="">Password</label>
-    //               <input type="password" name="password" id="password" />
-    //             </div>
-    //             <div className="login-foot">
-    //               <input type="submit" value="Login" />
-    //               <p>
-    //                 Si aún no eres usuario registrate{" "}
-    //                 <NavLink exact to="/register">
-    //                   aquí
-    //                 </NavLink>
-    //               </p>
-    //             </div>
-    //           </form>
-    //         </div>
-    //       </div>
-    //     </>
-    //   )}
-    // </div>
   );
 };

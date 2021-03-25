@@ -9,6 +9,8 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    /* login reducer */
+
     case actionTypes.LOGIN_REQUEST:
       return {
         ...state,
@@ -31,6 +33,32 @@ export const authReducer = (state = initialState, action) => {
         token: action.token,
         user: action.user,
       };
+
+    /* register reducer */
+
+    case actionTypes.REGISTER_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isFetching: true,
+      };
+    case actionTypes.REGISTER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: {
+          isError: true,
+          message: action.error,
+        },
+      };
+    case actionTypes.REGISTER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        token: action.token,
+        user: action.user,
+      };
+
     case actionTypes.LOGOUT:
       return {
         initialState,
