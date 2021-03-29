@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Box } from "../../components/Box";
 import { Container } from "../../components/Container";
 import {
+  Button,
   Form,
   FormFoot,
   FormItem,
@@ -11,15 +12,19 @@ import {
   Input,
 } from "../../components/Form";
 import { Page, PageBody, PageHead } from "../../components/Page";
+import {
+  FloatLoading,
+  FloatMessage,
+  FloatMessageBody,
+  FloatMessageOptions,
+} from "../../components/Float";
 import * as authActions from "../../stores/auth/actions";
-import * as messageActions from "../../stores/message/actions";
 
 import "./style.scss";
-import { FloatLoading, FloatMessage } from "../../components/Float";
 
 export const Login: React.FC<any> = () => {
   const isFetching = useSelector((state: any) => state.auth.isFetching);
-  const error = useSelector((state: any) => state.messageAlert.text);
+  const error = useSelector((state: any) => state.auth.error);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -29,17 +34,11 @@ export const Login: React.FC<any> = () => {
     dispatch(authActions.login(username, password));
   };
 
-  const handleCloseMessage = () => {
-    dispatch(messageActions.hideAlert());
-  };
-
   return (
     <Container>
       <>
         {!!error && (
-          <FloatMessage handleClick={handleCloseMessage} show={!!error}>
-            {error}
-          </FloatMessage>
+          <FloatMessage show={!!error}>{error}</FloatMessage>
         )}
         {isFetching && <FloatLoading />}
 

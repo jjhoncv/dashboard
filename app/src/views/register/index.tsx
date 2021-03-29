@@ -39,11 +39,11 @@ export const Register: React.FC<any> = () => {
   return (
     <Container>
       <>
-        {!!error && (
+        {/* {!!error && (
           <FloatMessage handleClick={handleCloseMessage} show={!!error}>
             {error}
           </FloatMessage>
-        )}
+        )} */}
         {isFetching && <FloatLoading />}
 
         <Page>

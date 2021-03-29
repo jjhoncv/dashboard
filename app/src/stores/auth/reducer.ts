@@ -21,16 +21,14 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        error: {
-          isError: true,
-          message: action.error,
-        },
+        error: action.error,
       };
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: false,
         token: action.token,
+        error: null,
         user: action.user,
       };
 
@@ -46,10 +44,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        error: {
-          isError: true,
-          message: action.error,
-        },
+        error: action.error,
       };
     case actionTypes.REGISTER_SUCCESS:
       return {

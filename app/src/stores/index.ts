@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import thunkMiddleware from "redux-thunk";
 
 import { authReducer } from "../stores/auth/reducer";
+import { productReducer } from "./product/index";
 import { messageAlertReducer } from "./message/reducer";
 
 const authPersistConfig = {
@@ -13,6 +14,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  product: productReducer,
   messageAlert: messageAlertReducer,
 });
 

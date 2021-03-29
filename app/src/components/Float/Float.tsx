@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const Float: React.FC<Props> = ({ handleClick, children }) => {
-  return (
+  return (  
     <div onClick={() => handleClick && handleClick()} className="float">
       {children}
     </div>
